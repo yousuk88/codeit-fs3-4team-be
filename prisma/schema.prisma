@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,33 +8,33 @@ datasource db {
 }
 
 model StartUp {
-  id Int @id @default(autoincrement())
-  name String 
-  categoryId Int @map("category_id")
-  actualInvest Int @default(0)
-  simInvest Int @default(0)
-  revenue Int @default(0)
-  employees Int @default(0)
-  description String? 
-  count Int @default(0)
+  id           Int     @id @default(autoincrement())
+  name         String
+  categoryId   Int     @map("category_id")
+  actualInvest Int     @default(0)
+  simInvest    Int     @default(0)
+  revenue      Int     @default(0)
+  employees    Int     @default(0)
+  description  String?
+  count        Int     @default(0)
 
-  category Category @relation(fields: [categoryId], references: [id])
+  category      Category       @relation(fields: [categoryId], references: [id])
   mockInvestors MockInvestor[]
 }
 
 model MockInvestor {
-  id Int @id @default(autoincrement())
-  startUpId Int
-  name String @db.VarChar(10)
-  investAmount Int @default(0) 
-  comment String
-  password String @db.VarChar(40)
+  id           Int    @id @default(autoincrement())
+  startUpId    Int
+  name         String @db.VarChar(10)
+  investAmount Int    @default(0)
+  comment      String
+  password     String @db.VarChar(40)
 
   startup StartUp @relation(fields: [startUpId], references: [id])
 }
 
 model Category {
-  id Int @id @default(autoincrement())
+  id       Int    @id @default(autoincrement())
   category String @db.VarChar(20)
 
   startups StartUp[]
