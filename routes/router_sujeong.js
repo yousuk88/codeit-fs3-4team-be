@@ -39,6 +39,5 @@ async function getCompanies(page, limit, name) {
 }
 
 // 내 기업과 비교 대상 기어블 비교하기(정렬) api express
-router_sujeong.get("/api/companies/comparison", (req, res) => {});
 
 app.listen(port, () => console.log(`${port}서버시작`));
