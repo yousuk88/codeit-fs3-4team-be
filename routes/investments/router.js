@@ -35,4 +35,26 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+router.post('/', async(req, res) => {
+    try{
+      const { startUpId, name, investAmount, comment, password } = req.body;
+
+      const newInvestment = await prisma.mockInvestor.create({
+        data : {
+          startUpId,
+          name,
+          investAmount,
+          comment,
+          password,
+        }
+      });
+
+      res.status(201).json(newInvestment);
+
+    } catch(error) {
+      console.error('투자 오류 발생: ', error);
+      res.status(500).json({ error: "투자 실패함" });
+    }
+})
+
 export default router;
